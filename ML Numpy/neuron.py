@@ -1,17 +1,22 @@
-inputs = [1, 2, 3, 2.5]                 #outputs for 3 previous layers
-weights = [[0.2, 0.8, -0.5, 1.0],       #each output has a weight
+import numpy as np
+
+inputs = [[1, 2, 3, 2.5],
+          [2, 5, -1, 2],
+          [-1.5, 2.7, 3.3, -0.8]]
+
+weights = [[0.2, 0.8, -0.5, 1],
            [0.5, -0.91, 0.26, -0.5],
            [-0.26, -0.27, 0.17, 0.87]]  
-bias = [2, 3, 0.5]                      #bias of current neuron
+
+biases = [2, 3, 0.5]
+
+weights2 = [[0.1, -0.14,0.5],
+            [-0.5, 0.12, -0.33],
+            [-0.44, 0.71, -0.13]]
+
+biases2 = [-1, 2, -0.5]
 
 
-
-
-output = []
-for b, weight, in zip(bias, weights):
-    temp = b
-    for i, w in zip(inputs, weight):
-        temp += i * w
-    output.append(temp)
-
-print(output)
+layer1_outputs = np.dot(inputs, np.array(weights).T) + biases
+layer2_outputs = np.dot(layer1_outputs, np.array(weights2).T) + biases2
+print(layer2_outputs)
